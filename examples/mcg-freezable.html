@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="utf-8" />
+	<title>Leaflet.MarkerCluster.Freezable demo page</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+	<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster-src.js"></script>
+
+	<script src="../leaflet.markercluster.freezable-src.js"></script>
+
+	<style>
+
+		#map {
+			width: 800px;
+			height: 600px;
+			border: 1px solid #ccc;
+		}
+
+		.italic {
+			font-style: italic;
+		}
+
+		code {
+			color: brown;
+		}
+
+	</style>
+
+</head>
+<body>
+
+<h1>Leaflet.MarkerCluster.Freezable demo page</h1>
+
+<div id="map"></div>
+<p>Current map zoom: <span id="currentMapZoom"></span> (max: 12)</p>
+<button id="freezeAtCurrentZoomButton">freezeAtZoom()</button> (i.e. at current zoom)
+<br />
+<input id="frozenZoomInput" type="range" step="1" min="0" max="13" value="12" />
+<span id="frozenZoomInputValue"></span>
+<button id="freezeAtZoomButton">freezeAtZoom(<span class="italic">as specified in input</span>)</button>
+<br />
+<button id="freezeMaxKeepSpiderfyButton">freezeAtZoom("maxKeepSpiderfy")</button>
+<button id="freezeMaxButton">freezeAtZoom("max")</button>
+<br />
+<button id="unfreezeButton">unfreeze()</button>
+<br />
+<button id="disableKeepSpiderfyButton">disableClusteringKeepSpiderfy()</button>
+<button id="disableButton">disableClustering()</button>
+<br />
+<button id="enableButton">enableClustering()</button>
+<br />
+<br />
+<button id="addMCGtoMap">Add MCG to Map</button>
+<button id="removeMCGfromMap">Remove MCG from Map</button>
+
+<script type="application/javascript">
+
+	var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+			maxZoom: 12,
+			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+		}),
+		latlng = L.latLng(48.86, 2.34);
+
+
+	var map = L.map('map', {center: latlng, zoom: 11, layers: [tiles]});
+
+	var mcg = L.markerClusterGroup();
+
+	for (var i = 0; i < 50; i += 1) {
+		L.marker(getRandomLatLng()).addTo(mcg).bindPopup("Marker " + i);
+	}
+
+	mcg.addTo(map);
+
+	function getRandomLatLng() {
+		return [
+			48.86 + 0.1 * Math.random() - 0.05,
+			2.34 + 0.16 * Math.random() - 0.08
+		];
+	}
+
+
+
+	///////////////////////
+	// Set-up buttons.
+	///////////////////////
+
+	onButtonClick("freezeAtCurrentZoomButton", function () {
+		mcg.freezeAtZoom();
+	});
+
+	onButtonClick("freezeAtZoomButton", function () {
+		mcg.freezeAtZoom(parseInt(frozenZoomInput.value, 10));
+	});
+
+	onButtonClick("freezeMaxKeepSpiderfyButton", function () {
+		mcg.freezeAtZoom("maxKeepSpiderfy");
+	});
+
+	onButtonClick("freezeMaxButton", function () {
+		mcg.freezeAtZoom("max");
+	});
+
+	onButtonClick("unfreezeButton", function () {
+		mcg.unfreeze();
+	});
+
+	onButtonClick("disableKeepSpiderfyButton", function () {
+		mcg.disableClusteringKeepSpiderfy();
+	});
+
+	onButtonClick("disableButton", function () {
+		mcg.disableClustering();
+	});
+
+	onButtonClick("enableButton", function () {
+		mcg.enableClustering();
+	});
+
+	onButtonClick("addMCGtoMap", function () {
+		map.addLayer(mcg);
+	});
+
+	onButtonClick("removeMCGfromMap", function () {
+		map.removeLayer(mcg);
+	});
+
+	function onButtonClick(buttonId, callback) {
+		getById(buttonId).addEventListener("click", callback);
+	}
+
+	function getById(id) {
+		return document.getElementById(id);
+	}
+
+	// Range slider frozenZoomInput
+	var frozenZoomInput = getById("frozenZoomInput"),
+		frozenZoomInputValue = getById("frozenZoomInputValue");
+
+	getById("frozenZoomInput").addEventListener("input", updateFrozenInputValue);
+
+	updateFrozenInputValue();
+
+	function updateFrozenInputValue() {
+		frozenZoomInputValue.innerHTML = frozenZoomInput.value;
+	}
+
+
+
+	///////////////////////
+	// Show map zoom
+	///////////////////////
+
+	var currentMapZoom = getById("currentMapZoom");
+
+	map.on("zoomend", showMapCurrentZoom);
+
+	showMapCurrentZoom();
+
+	function showMapCurrentZoom() {
+		currentMapZoom.innerHTML = map.getZoom();
+	}
+
+
+
+	///////////////////////
+	// Patch MCG from CDN
+	///////////////////////
+
+	// See https://github.com/Leaflet/Leaflet.markercluster/pull/607
+	L.MarkerClusterGroup.prototype._spiderfierOnRemove = function () {
+		this._map.off('click', this._unspiderfyWrapper, this);
+		this._map.off('zoomstart', this._unspiderfyZoomStart, this);
+		this._map.off('zoomanim', this._unspiderfyZoomAnim, this);
+		this._map.off('zoomend', this._noanimationUnspiderfy, this);
+
+		//Ensure that markers are back where they should be
+		// Use no animation to avoid a sticky leaflet-cluster-anim class on mapPane
+		this._noanimationUnspiderfy();
+	};
+
+
+</script>
+
+</body>
+</html>
