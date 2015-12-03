@@ -35,10 +35,10 @@
 
 			this._originalOnAdd(map);
 
-			if (this._frozen && frozenZoom >= 0) {
+			if (this._frozen) {
 
 				// Restore the specified frozenZoom if necessary.
-				if (frozenZoom >= 0) {
+				if (frozenZoom >= 0 && frozenZoom !== this._zoom) {
 					// Undo clusters and markers addition to this._featureGroup.
 					this._featureGroup.clearLayers();
 
@@ -141,9 +141,8 @@
 				map.on('moveend', this._moveEnd, this);
 
 				// Animate.
-				//this._zoomEnd();
 				this._executeAfterUnspiderfy(function () {
-					this._zoomEnd();
+					this._zoomEnd(); // Will set this._zoom at the end.
 				}, this);
 			}
 		},

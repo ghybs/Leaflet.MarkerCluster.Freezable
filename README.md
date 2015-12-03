@@ -19,8 +19,7 @@ Current MCG.Freezable version: 0.1.0
 
 
 ## Demos
-- [LayerSupport with standard L.Control.Layers](http://ghybs.github.io/Leaflet.MarkerCluster.LayerSupport/examples/mcgLayerSupport-controlLayers-realworld.388.html)
-- [LayerSupport with LeafletSlider plugin](http://ghybs.github.io/Leaflet.MarkerCluster.LayerSupport/examples/mcgLayerSupport-leafletslider.html)
+[Leaflet.MarkerCluster.Freezable demo page](http://ghybs.github.io/Leaflet.MarkerCluster.Freezable/examples/mcg-freezable.html)
 
 
 ## Usage instructions
@@ -59,6 +58,9 @@ In particular, freezing at `maxZoom + 1` removes all clusters.
 
 Freezing at `maxZoom` removes all clusters except the bottom-most ones, so that
 user can still spiderfy closely positioned markers.
+
+Note: while frozen, MCG will continue removing clusters and markers which are
+far from the view port, accordingly with `removeOutsideVisibleBounds` option.
 
 
 ### Installing the sub-plugin
@@ -104,8 +106,7 @@ available within MCG Layer Support. Refer to Leaflet.markercluster documentation
 
 ### Freezing at current zoom while not on map
 If you request MCG to freeze at current zoom, but MCG is not on any map at that
-moment, it will freeze at the zoom the map is currently at when added to it.
-to the map, without clustering. What did you expect? :-)
+moment, it will freeze at the zoom the map is at when added to it.
 
 ## License
 Leaflet.MarkerCluster.Freezable is distributed under the
