@@ -25,13 +25,13 @@ Current MCG.Freezable version: 0.1.0
 ## Usage instructions
 
 ### Quick Guide
-HTML:
+**HTML:**
 ```html
 <!-- After Leaflet and Leaflet.markercluster scripts -->
 <script src="leaflet.markercluster.freezable-src.js"></script>
 ```
 
-JavaScript:
+**JavaScript:**
 ```javascript
 var map = L.map("map"),
     mcg = L.markerClusterGroup(options);

@@ -231,39 +231,42 @@
 	// Patch MCG from CDN
 	///////////////////////
 
-	// See https://github.com/Leaflet/Leaflet.markercluster/pull/607
-	L.MarkerClusterGroup.prototype._spiderfierOnRemove = function () {
-		this._map.off('click', this._unspiderfyWrapper, this);
-		this._map.off('zoomstart', this._unspiderfyZoomStart, this);
-		this._map.off('zoomanim', this._unspiderfyZoomAnim, this);
-		this._map.off('zoomend', this._noanimationUnspiderfy, this);
+	L.MarkerClusterGroup.include({
 
-		//Ensure that markers are back where they should be
-		// Use no animation to avoid a sticky leaflet-cluster-anim class on mapPane
-		this._noanimationUnspiderfy();
-	};
+		// See https://github.com/Leaflet/Leaflet.markercluster/pull/607
+		_spiderfierOnRemove: function () {
+			this._map.off('click', this._unspiderfyWrapper, this);
+			this._map.off('zoomstart', this._unspiderfyZoomStart, this);
+			this._map.off('zoomanim', this._unspiderfyZoomAnim, this);
+			this._map.off('zoomend', this._noanimationUnspiderfy, this);
 
-	// See https://github.com/Leaflet/Leaflet.markercluster/commit/254198ad47d73ddb7177c6aefde78561046d8c0c
-	L.MarkerClusterGroup.prototype._mergeSplitClusters = function () {
+			//Ensure that markers are back where they should be
+			// Use no animation to avoid a sticky leaflet-cluster-anim class on mapPane
+			this._noanimationUnspiderfy();
+		},
 
-		//Incase we are starting to split before the animation finished
-		this._processQueue();
+		// See https://github.com/Leaflet/Leaflet.markercluster/commit/254198ad47d73ddb7177c6aefde78561046d8c0c
+		_mergeSplitClusters: function () {
 
-		if (this._zoom < this._map._zoom && this._currentShownBounds.intersects(this._getExpandedVisibleBounds())) { //Zoom in, split
-			this._animationStart();
-			//Remove clusters now off screen
-			this._topClusterLevel._recursivelyRemoveChildrenFromMap(this._currentShownBounds, this._zoom, this._getExpandedVisibleBounds());
+			//Incase we are starting to split before the animation finished
+			this._processQueue();
 
-			this._animationZoomIn(this._zoom, this._map._zoom);
+			if (this._zoom < this._map._zoom && this._currentShownBounds.intersects(this._getExpandedVisibleBounds())) { //Zoom in, split
+				this._animationStart();
+				//Remove clusters now off screen
+				this._topClusterLevel._recursivelyRemoveChildrenFromMap(this._currentShownBounds, this._zoom, this._getExpandedVisibleBounds());
 
-		} else if (this._zoom > this._map._zoom) { //Zoom out, merge
-			this._animationStart();
+				this._animationZoomIn(this._zoom, this._map._zoom);
 
-			this._animationZoomOut(this._zoom, this._map._zoom);
-		} else {
-			this._moveEnd();
+			} else if (this._zoom > this._map._zoom) { //Zoom out, merge
+				this._animationStart();
+
+				this._animationZoomOut(this._zoom, this._map._zoom);
+			} else {
+				this._moveEnd();
+			}
 		}
-	};
+	});
 
 
 </script>

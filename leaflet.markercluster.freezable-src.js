@@ -26,6 +26,8 @@
 	var LMCG = L.MarkerClusterGroup,
 	    LMCGproto = LMCG.prototype;
 
+	LMCG.freezableVersion = '0.1.0';
+
 	LMCG.include({
 
 		_originalOnAdd: LMCGproto.onAdd,
@@ -85,6 +87,7 @@
 			// If frozenZoom is not specified, true or NaN, freeze at current zoom.
 			// Note: NaN is the only value which is not eaqual to itself.
 			if (frozenZoom === undefined || frozenZoom === true || (frozenZoom !== frozenZoom)) {
+				// Set to -1 if not on map, as the sign to freeze as soon as it gets added to a map.
 				frozenZoom = map ? Math.round(map.getZoom()) : -1;
 			} else if (frozenZoom === 'max') {
 				// If frozenZoom is "max", freeze at MCG maxZoom + 1 (eliminates all clusters).
