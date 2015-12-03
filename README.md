@@ -59,8 +59,12 @@ In particular, freezing at `maxZoom + 1` removes all clusters.
 Freezing at `maxZoom` removes all clusters except the bottom-most ones, so that
 user can still spiderfy closely positioned markers.
 
-Note: while frozen, MCG will continue removing clusters and markers which are
-far from the view port, accordingly with `removeOutsideVisibleBounds` option.
+**CAUTION: make sure your operations makes sense before freezing to high zoom
+whereas the map is at a low zoom. It may have to load _thousands_ of markers
+suddenly!**
+
+_Note: while frozen, MCG will continue removing clusters and markers which are
+far from the view port, accordingly with `removeOutsideVisibleBounds` option._
 
 
 ### Installing the sub-plugin

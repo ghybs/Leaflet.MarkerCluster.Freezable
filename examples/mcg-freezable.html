@@ -107,6 +107,9 @@
 				Current map zoom: <span id="currentMapZoom"></span> (max: 12)
 			</p>
 			<p>
+				Frozen at zoom: <span id="currentFrozenZoom"></span>
+			</p>
+			<p>
 				<button id="addMCGtoMap">Add MCG to Map</button>
 				<button id="removeMCGfromMap">Remove MCG from Map</button>
 			</p>
@@ -134,6 +137,8 @@
 		L.marker(getRandomLatLng()).addTo(mcg).bindPopup("Marker " + i);
 	}
 
+	mcg.freezeAtZoom();
+
 	mcg.addTo(map);
 
 	function getRandomLatLng() {
@@ -151,38 +156,47 @@
 
 	onButtonClick("freezeAtCurrentZoomButton", function () {
 		mcg.freezeAtZoom();
+		updateCurrentFrozenZoom();
 	});
 
 	onButtonClick("freezeAtZoomButton", function () {
 		mcg.freezeAtZoom(parseInt(frozenZoomInput.value, 10));
+		updateCurrentFrozenZoom();
 	});
 
 	onButtonClick("freezeMaxKeepSpiderfyButton", function () {
 		mcg.freezeAtZoom("maxKeepSpiderfy");
+		updateCurrentFrozenZoom();
 	});
 
 	onButtonClick("freezeMaxButton", function () {
 		mcg.freezeAtZoom("max");
+		updateCurrentFrozenZoom();
 	});
 
 	onButtonClick("unfreezeButton", function () {
 		mcg.unfreeze();
+		updateCurrentFrozenZoom();
 	});
 
 	onButtonClick("disableKeepSpiderfyButton", function () {
 		mcg.disableClusteringKeepSpiderfy();
+		updateCurrentFrozenZoom();
 	});
 
 	onButtonClick("disableButton", function () {
 		mcg.disableClustering();
+		updateCurrentFrozenZoom();
 	});
 
 	onButtonClick("enableButton", function () {
 		mcg.enableClustering();
+		updateCurrentFrozenZoom();
 	});
 
 	onButtonClick("addMCGtoMap", function () {
 		map.addLayer(mcg);
+		updateCurrentFrozenZoom();
 	});
 
 	onButtonClick("removeMCGfromMap", function () {
@@ -199,14 +213,23 @@
 
 	// Range slider frozenZoomInput
 	var frozenZoomInput = getById("frozenZoomInput"),
-		frozenZoomInputValue = getById("frozenZoomInputValue");
+		frozenZoomInputValue = getById("frozenZoomInputValue"),
+		currentFrozenZoom = getById("currentFrozenZoom");
 
 	getById("frozenZoomInput").addEventListener("input", updateFrozenInputValue);
 
 	updateFrozenInputValue();
 
+	updateCurrentFrozenZoom();
+
 	function updateFrozenInputValue() {
 		frozenZoomInputValue.innerHTML = frozenZoomInput.value;
+	}
+
+	function updateCurrentFrozenZoom() {
+		currentFrozenZoom.innerHTML = mcg._frozen ?
+				mcg._zoom :
+				"<span class='italic'>(not frozen)</span>";
 	}
 
 
