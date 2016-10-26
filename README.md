@@ -70,9 +70,6 @@ _Note: while frozen, MCG will continue removing clusters and markers which are
 far from the view port, accordingly with `removeOutsideVisibleBounds` option._
 
 
-### Installing the sub-plugin
-Simply add the "leaflet.markercluster.freezable-src.js" script file to your page
-after Leaflet and Leaflet.markercluster scripts.
 
 ### Installing the sub-plugin
 
