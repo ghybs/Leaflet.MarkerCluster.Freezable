@@ -11,6 +11,7 @@
   },
   "scripts": {
     "build": "jake build",
+    "build:docs": "jake buildDocs",
     "prepublish": "jake"
   },
   "repository": {
