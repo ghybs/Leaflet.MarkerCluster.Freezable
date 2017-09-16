@@ -151,7 +151,10 @@ L.MarkerClusterGroup.include({
 			// Make as if we had instantly zoomed in from previousZoom to targetZoom.
 			this._animationStart();
 			this._topClusterLevel._recursivelyRemoveChildrenFromMap(
-				this._currentShownBounds, previousZoom, this._getExpandedVisibleBounds()
+				this._currentShownBounds,
+				this._map.getMinZoom(), // New 2nd argument added in Leaflet.markercluster 1.0.4
+				previousZoom,
+				this._getExpandedVisibleBounds()
 			);
 			this._animationZoomIn(previousZoom, targetZoom);
 
