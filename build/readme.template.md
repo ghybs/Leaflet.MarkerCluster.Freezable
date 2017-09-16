@@ -81,7 +81,7 @@ far from the view port, accordingly with `removeOutsideVisibleBounds` option._
 ### Installing the sub-plugin
 
 #### Local copy
-1. Download the "<a href="https://github.com/ghybs/Leaflet.MarkerCluster.Freezable/releases/download/v0.1.1/leaflet.markercluster.freezable.js">`leaflet.markercluster.freezable.js`</a>" file from the [`v0.1.1` release](https://github.com/ghybs/Leaflet.MarkerCluster.Freezable/releases/tag/v0.1.1).
+1. Download the "<a href="https://github.com/ghybs/Leaflet.MarkerCluster.Freezable/releases/download/{{TAG_NAME}}/leaflet.markercluster.freezable.js">`leaflet.markercluster.freezable.js`</a>" file from the [`{{TAG_NAME}}` release](https://github.com/ghybs/Leaflet.MarkerCluster.Freezable/releases/tag/{{TAG_NAME}}).
 2. Place the file alongside your page.
 3. Add the `script` tag (see [Quick Guide > HTML](#quick-guide)) to your page after Leaflet and Leaflet.markercluster scripts.
 
@@ -90,7 +90,7 @@ You can alternatively use the free [unpkg](https://unpkg.com) CDN service, but k
 
 ```html
 <!-- After Leaflet script -->
-<script src="https://unpkg.com/leaflet.markercluster.freezable@0.1.1/dist/leaflet.markercluster.freezable.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster.freezable@{{VERSION}}/dist/leaflet.markercluster.freezable.js"></script>
 ```
 
 #### npm
