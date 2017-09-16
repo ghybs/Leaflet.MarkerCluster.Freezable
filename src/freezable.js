@@ -1,11 +1,11 @@
 L.MarkerClusterGroup.include({
 
-	_originalOnAdd: L.MarkerClusterGroup.prototype.onAdd,
+	_originalOnAddFreezable: L.MarkerClusterGroup.prototype.onAdd,
 
 	onAdd: function (map) {
 		var frozenZoom = this._zoom;
 
-		this._originalOnAdd(map);
+		this._originalOnAddFreezable(map);
 
 		if (this._frozen) {
 
