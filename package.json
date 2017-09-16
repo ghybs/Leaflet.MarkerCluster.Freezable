@@ -12,7 +12,9 @@
   "scripts": {
     "build": "jake build",
     "build:docs": "jake buildDocs",
-    "prepublish": "jake"
+    "version": "npm run build && npm run build:docs && git add README.md",
+    "postversion": "npm run build",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
