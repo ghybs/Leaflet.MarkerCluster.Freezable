@@ -200,6 +200,9 @@ L.MarkerClusterGroup.include({
 				c._addToMap();
 			}
 		);
+
+		// Record new bounds so that newly added markers are properly displayed.
+		this._currentShownBounds = newBounds;
 	},
 
 	_originalZoomOrSpiderfy: L.MarkerClusterGroup.prototype._zoomOrSpiderfy,
