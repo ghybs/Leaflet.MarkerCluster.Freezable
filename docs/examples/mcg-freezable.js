@@ -79,6 +79,12 @@ onButtonClick("removeMCGfromMap", function () {
 	map.removeLayer(mcg);
 });
 
+onButtonClick("addMarker", function () {
+	i += 1;
+	L.marker(getRandomLatLng()).addTo(mcg).bindPopup("Marker " + i);
+	console.log('Added marker ' + i);
+});
+
 function onButtonClick(buttonId, callback) {
 	getById(buttonId).addEventListener("click", callback);
 }
