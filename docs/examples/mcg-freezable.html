@@ -6,15 +6,6 @@
 	<title>Leaflet.MarkerCluster.Freezable demo page</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@0.7.7/dist/leaflet.css" />
-	<script src="https://unpkg.com/leaflet@0.7.7/dist/leaflet-src.js"></script>
-
-	<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@0.5.0/dist/MarkerCluster.css" />
-	<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@0.5.0/dist/MarkerCluster.Default.css" />
-	<script src="https://unpkg.com/leaflet.markercluster@0.5.0/dist/leaflet.markercluster-src.js"></script>
-
-	<script src="https://unpkg.com/leaflet.markercluster.freezable@0.1.1/dist/leaflet.markercluster.freezable-src.js"></script>
-
 	<style>
 
 		#map {
@@ -46,6 +37,9 @@
 		}
 
 	</style>
+
+	<script src="https://unpkg.com/manage-libs-versions@0.0.1/manage-libs-versions.js"></script>
+	<script src="mcg-freezable-libs-setup.js"></script>
 
 </head>
 <body>
@@ -118,179 +112,134 @@
 	</tr>
 </table>
 
+<table class="buttonsTable">
+	<tr>
+		<th>Leaflet</th>
+		<th>Leaflet.markercluster</th>
+		<th>Leaflet.MarkerCluster.Freezable</th>
+	</tr>
+	<tr>
+		<td rowspan="2">
+			<script>
+				// https://github.com/ghybs/manage-libs-versions
+				bundle1.insertLibVersionsRadioHere('leaflet', [
+					'1.2.0',
+					'1.1.0',
+					'1.0.3',
+					'1.0.2',
+					'1.0.1',
+					'1.0.0'
+				]);
+			</script>
+		</td>
+		<td>
+			<script>
+				bundle1.insertLibVersionsRadioHere('leaflet.markercluster', [
+					'1.1.0',
+					'1.0.6',
+					'1.0.5',
+					'1.0.4'
+				]);
+			</script>
+		</td>
+		<td>
+			<script>
+				bundle1.insertLibVersionsRadioHere('leaflet.markercluster.freezable', [
+					'1.0.0'
+				]);
+			</script>
+		</td>
+	</tr>
+	<tr>
+		<!--td>("eaten" by above rowspan)</td-->
+		<td>
+			<script>
+				bundle1.insertLibVersionsRadioHere('leaflet.markercluster', [
+					'1.0.3',
+					'1.0.2',
+					'1.0.1',
+					'1.0.0'
+				]);
+			</script>
+		</td>
+		<td rowspan="2">
+			<script>
+				bundle1.insertLibVersionsRadioHere('leaflet.markercluster.freezable', [
+					'0.1.1'
+				]);
+			</script>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<script>
+				bundle1.insertLibVersionsRadioHere('leaflet', [
+					'0.7.7'
+				]);
+			</script>
+		</td>
+		<td>
+			<script>
+				bundle1.insertLibVersionsRadioHere('leaflet.markercluster', [
+					'0.5.0'
+				]);
+			</script>
+		</td>
+		<!--td>("eaten" by above rowspan)</td-->
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td>
+			<script>
+				bundle1.insertLibVersionsRadioHere('leaflet.markercluster.freezable', [
+					'local'
+				]);
+			</script>
+		</td>
+	</tr>
+</table>
+
+<br />
+
+<button id="reload">Reload with the above versions</button>
 
 
-<script type="application/javascript">
+<script src="https://unpkg.com/urijs@1.18.12/src/URI.min.js"></script>
+<script src="https://unpkg.com/load-js-css@0.0.2/index.js"></script>
 
-	var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-			maxZoom: 12,
-			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-		}),
-		latlng = L.latLng(48.86, 2.34);
+<script>
 
+	var url = window.location.href;
+	// https://github.com/medialize/URI.js
+	var urlParts = URI.parse(url);
+	var queryStringParts = URI.parseQuery(urlParts.query);
+	// https://github.com/ghybs/manage-libs-versions
+	var list = bundle1.getAndSelectVersionsAssetsList(queryStringParts);
 
-	var map = L.map('map', {center: latlng, zoom: 11, layers: [tiles]});
-
-	var mcg = L.markerClusterGroup();
-
-	for (var i = 0; i < 50; i += 1) {
-		L.marker(getRandomLatLng()).addTo(mcg).bindPopup("Marker " + i);
-	}
-
-	mcg.freezeAtZoom();
-
-	mcg.addTo(map);
-
-	function getRandomLatLng() {
-		return [
-			48.86 + 0.1 * Math.random() - 0.05,
-			2.34 + 0.16 * Math.random() - 0.08
-		];
-	}
-
-
-
-	///////////////////////
-	// Set-up buttons.
-	///////////////////////
-
-	onButtonClick("freezeAtCurrentZoomButton", function () {
-		mcg.freezeAtZoom();
-		updateCurrentFrozenZoom();
+	// Finally load the page script, now that Leaflet, Leaflet.markercluster and MCG.freezable are available.
+	list.push({
+		type: 'script',
+		path: './mcg-freezable.js'
 	});
 
-	onButtonClick("freezeAtZoomButton", function () {
-		mcg.freezeAtZoom(parseInt(frozenZoomInput.value, 10));
-		updateCurrentFrozenZoom();
+	console.log(list);
+
+	// https://github.com/ghybs/load-js-css
+	loadJsCss.list(list, {
+		delayScripts: 500 // Load scripts after stylesheets, delayed by this duration (in ms).
 	});
 
-	onButtonClick("freezeMaxKeepSpiderfyButton", function () {
-		mcg.freezeAtZoom("maxKeepSpiderfy");
-		updateCurrentFrozenZoom();
+
+	////////////////////////////////////////////////////////
+	document.getElementById('reload').addEventListener('click', function (event) {
+		event.preventDefault();
+
+		var bundleVersions = bundle1.readSelectedVersionsNames();
+		var url = new URI(window.location.href).setQuery(bundleVersions);
+
+		window.location.href = url.toString();
 	});
-
-	onButtonClick("freezeMaxButton", function () {
-		mcg.freezeAtZoom("max");
-		updateCurrentFrozenZoom();
-	});
-
-	onButtonClick("unfreezeButton", function () {
-		mcg.unfreeze();
-		updateCurrentFrozenZoom();
-	});
-
-	onButtonClick("disableKeepSpiderfyButton", function () {
-		mcg.disableClusteringKeepSpiderfy();
-		updateCurrentFrozenZoom();
-	});
-
-	onButtonClick("disableButton", function () {
-		mcg.disableClustering();
-		updateCurrentFrozenZoom();
-	});
-
-	onButtonClick("enableButton", function () {
-		mcg.enableClustering();
-		updateCurrentFrozenZoom();
-	});
-
-	onButtonClick("addMCGtoMap", function () {
-		map.addLayer(mcg);
-		updateCurrentFrozenZoom();
-	});
-
-	onButtonClick("removeMCGfromMap", function () {
-		map.removeLayer(mcg);
-	});
-
-	function onButtonClick(buttonId, callback) {
-		getById(buttonId).addEventListener("click", callback);
-	}
-
-	function getById(id) {
-		return document.getElementById(id);
-	}
-
-	// Range slider frozenZoomInput
-	var frozenZoomInput = getById("frozenZoomInput"),
-		frozenZoomInputValue = getById("frozenZoomInputValue"),
-		currentFrozenZoom = getById("currentFrozenZoom");
-
-	getById("frozenZoomInput").addEventListener("input", updateFrozenInputValue);
-
-	updateFrozenInputValue();
-
-	updateCurrentFrozenZoom();
-
-	function updateFrozenInputValue() {
-		frozenZoomInputValue.innerHTML = frozenZoomInput.value;
-	}
-
-	function updateCurrentFrozenZoom() {
-		currentFrozenZoom.innerHTML = mcg._frozen ?
-				mcg._zoom :
-				"<span class='italic'>(not frozen)</span>";
-	}
-
-
-
-	///////////////////////
-	// Show map zoom
-	///////////////////////
-
-	var currentMapZoom = getById("currentMapZoom");
-
-	map.on("zoomend", showMapCurrentZoom);
-
-	showMapCurrentZoom();
-
-	function showMapCurrentZoom() {
-		currentMapZoom.innerHTML = map.getZoom();
-	}
-
-
-
-	///////////////////////
-	// Patch MCG from CDN
-	///////////////////////
-
-	L.MarkerClusterGroup.include({
-
-		// See https://github.com/Leaflet/Leaflet.markercluster/pull/607
-		_spiderfierOnRemove: function () {
-			this._map.off('click', this._unspiderfyWrapper, this);
-			this._map.off('zoomstart', this._unspiderfyZoomStart, this);
-			this._map.off('zoomanim', this._unspiderfyZoomAnim, this);
-			this._map.off('zoomend', this._noanimationUnspiderfy, this);
-
-			//Ensure that markers are back where they should be
-			// Use no animation to avoid a sticky leaflet-cluster-anim class on mapPane
-			this._noanimationUnspiderfy();
-		},
-
-		// See https://github.com/Leaflet/Leaflet.markercluster/commit/254198ad47d73ddb7177c6aefde78561046d8c0c
-		_mergeSplitClusters: function () {
-
-			//Incase we are starting to split before the animation finished
-			this._processQueue();
-
-			if (this._zoom < this._map._zoom && this._currentShownBounds.intersects(this._getExpandedVisibleBounds())) { //Zoom in, split
-				this._animationStart();
-				//Remove clusters now off screen
-				this._topClusterLevel._recursivelyRemoveChildrenFromMap(this._currentShownBounds, this._zoom, this._getExpandedVisibleBounds());
-
-				this._animationZoomIn(this._zoom, this._map._zoom);
-
-			} else if (this._zoom > this._map._zoom) { //Zoom out, merge
-				this._animationStart();
-
-				this._animationZoomOut(this._zoom, this._map._zoom);
-			} else {
-				this._moveEnd();
-			}
-		}
-	});
-
 
 </script>
 
