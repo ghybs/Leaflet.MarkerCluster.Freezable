@@ -1,3 +1,11 @@
+var cdn = 'https://unpkg.com/';
+var versionPlaceholder = '@{{VERSION}}/';
+
+var leafletPathPrefix = cdn + 'leaflet' + versionPlaceholder + 'dist/';
+var mcgPathPrefix = cdn + 'leaflet.markercluster' + versionPlaceholder + 'dist/';
+var freezablePathPrefix = cdn + 'leaflet.markercluster.freezable' + versionPlaceholder + 'dist/';
+
+
 // To be executed after manage-libs-versions is ready.
 // https://github.com/ghybs/manage-libs-versions
 // https://www.npmjs.com/package/manage-libs-versions
@@ -64,8 +72,8 @@ function _makeLeafletVersionAssets(options) {
 		name: versionName,
 		defaultVersion: options.defaultVersion,
 		assets: [
-			manageLibsVersions.makeStylesheet('https://unpkg.com/leaflet@{{VERSION}}/dist/leaflet.css', versionName, options.sriCss),
-			manageLibsVersions.makeScript('https://unpkg.com/leaflet@{{VERSION}}/dist/leaflet-src.js', versionName, options.sriSrcJs)
+			manageLibsVersions.makeStylesheet(leafletPathPrefix + 'leaflet.css', versionName, options.sriCss),
+			manageLibsVersions.makeScript(leafletPathPrefix + 'leaflet-src.js', versionName, options.sriSrcJs)
 		]
 	};
 }
@@ -77,9 +85,9 @@ function _makeMCGVersionAssets(options) {
 		name: versionName,
 		defaultVersion: options.defaultVersion,
 		assets: [
-			manageLibsVersions.makeStylesheet('https://unpkg.com/leaflet.markercluster@{{VERSION}}/dist/MarkerCluster.css', versionName, options.sriCss),
-			manageLibsVersions.makeStylesheet('https://unpkg.com/leaflet.markercluster@{{VERSION}}/dist/MarkerCluster.Default.css', versionName, options.sriDefaultCss),
-			manageLibsVersions.makeScript('https://unpkg.com/leaflet.markercluster@{{VERSION}}/dist/leaflet.markercluster-src.js', versionName, options.sriSrcJs)
+			manageLibsVersions.makeStylesheet(mcgPathPrefix + 'MarkerCluster.css', versionName, options.sriCss),
+			manageLibsVersions.makeStylesheet(mcgPathPrefix + 'MarkerCluster.Default.css', versionName, options.sriDefaultCss),
+			manageLibsVersions.makeScript(mcgPathPrefix + 'leaflet.markercluster-src.js', versionName, options.sriSrcJs)
 		]
 	};
 }
@@ -92,7 +100,7 @@ function _makeFreezableVersionAssets(options) {
 		defaultVersion: options.defaultVersion,
 		disabled: options.disabled,
 		assets: [
-			manageLibsVersions.makeScript('https://unpkg.com/leaflet.markercluster.freezable@{{VERSION}}/dist/leaflet.markercluster.freezable-src.js', versionName, options.sriSrcJs)
+			manageLibsVersions.makeScript(freezablePathPrefix + 'leaflet.markercluster.freezable-src.js', versionName, options.sriSrcJs)
 		]
 	};
 }
