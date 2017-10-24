@@ -42,11 +42,12 @@ var bundle1 = new manageLibsVersions.Bundle({
 		name: 'leaflet.markercluster.freezable',
 		mandatory: true,
 		versions: [
-			_makeFreezableVersionAssets({ name: '1.0.0' }),
+			_makeFreezableVersionAssets({ name: '1.0.0', disabled: true }), // Disable for now (not published yet)
 			_makeFreezableVersionAssets({ name: '0.1.1' }),
 			{
 				name: 'local',
 				defaultVersion: true,
+				disabled: true, // Will be enabled if assets are found to be available at runtime.
 				assets: [{
 					type: 'script',
 					path: '../../dist/leaflet.markercluster.freezable-src.js'
@@ -89,6 +90,7 @@ function _makeFreezableVersionAssets(options) {
 	return {
 		name: versionName,
 		defaultVersion: options.defaultVersion,
+		disabled: options.disabled,
 		assets: [
 			manageLibsVersions.makeScript('https://unpkg.com/leaflet.markercluster.freezable@{{VERSION}}/dist/leaflet.markercluster.freezable-src.js', versionName, options.sriSrcJs)
 		]

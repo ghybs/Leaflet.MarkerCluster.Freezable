@@ -36,9 +36,14 @@
 			color: brown;
 		}
 
+		.version-disabled {
+			text-decoration: line-through;
+		}
+
 	</style>
 
-	<script src="https://unpkg.com/manage-libs-versions@0.0.1/manage-libs-versions.js"></script>
+	<script src="https://unpkg.com/manage-libs-versions@0.1.1/manage-libs-versions.js"></script>
+	<!--script src="manage-libs-versions.js"></script-->
 	<script src="mcg-freezable-libs-setup.js"></script>
 
 </head>
@@ -217,25 +222,54 @@
 
 <script>
 
-	var url = window.location.href;
-	// https://github.com/medialize/URI.js
-	var urlParts = URI.parse(url);
-	var queryStringParts = URI.parseQuery(urlParts.query);
-	// https://github.com/ghybs/manage-libs-versions
-	var list = bundle1.getAndSelectVersionsAssetsList(queryStringParts);
+	// Check for availability of local version.
+	// It is absent from repository, therefore in online mode.
+	// In development mode, it is available if developer has built the dist file(s).
+	var localVersion = bundle1.getLibVersion('leaflet.markercluster.freezable', 'local');
 
-	// Finally load the page script, now that Leaflet, Leaflet.markercluster and MCG.freezable are available.
-	list.push({
-		type: 'script',
-		path: './mcg-freezable.js'
-	});
+	if (localVersion) {
+		localVersion.checkAssetsAvailability(true)
+			.then(function () {
+				console.log('LOCAL version found');
+				load();
+			})
+			.catch(function () {
+				var version100 = bundle1.getLibVersion('leaflet.markercluster.freezable', '1.0.0');
 
-	console.log(list);
+				if (version100) {
+					version100.defaultVersion = true;
+				}
 
-	// https://github.com/ghybs/load-js-css
-	loadJsCss.list(list, {
-		delayScripts: 500 // Load scripts after stylesheets, delayed by this duration (in ms).
-	});
+				load();
+			});
+	} else {
+		load();
+	}
+
+
+
+	function load() {
+		// Retrieve the requested versions from browser address bar.
+		var url = window.location.href;
+		// https://github.com/medialize/URI.js
+		var urlParts = URI.parse(url);
+		var queryStringParts = URI.parseQuery(urlParts.query);
+		// https://github.com/ghybs/manage-libs-versions
+		var list = bundle1.getAndSelectVersionsAssetsList(queryStringParts);
+
+		// Finally load the page script, now that Leaflet, Leaflet.markercluster and MCG.freezable are available.
+		list.push({
+			type: 'script',
+			path: './mcg-freezable.js'
+		});
+
+		console.log(list);
+
+		// https://github.com/ghybs/load-js-css
+		loadJsCss.list(list, {
+			delayScripts: 500 // Load scripts after stylesheets, delayed by this duration (in ms).
+		});
+	}
 
 
 	////////////////////////////////////////////////////////
