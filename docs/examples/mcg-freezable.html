@@ -42,10 +42,6 @@
 
 	</style>
 
-	<script src="https://unpkg.com/manage-libs-versions@0.1.1/manage-libs-versions.js"></script>
-	<!--script src="manage-libs-versions.js"></script-->
-	<script src="mcg-freezable-libs-setup.js"></script>
-
 </head>
 <body>
 
@@ -132,70 +128,52 @@
 	</tr>
 	<tr>
 		<td rowspan="2">
-			<script>
-				// https://github.com/ghybs/manage-libs-versions
-				bundle1.insertLibVersionsRadioHere('leaflet', [
-					'1.2.0',
-					'1.1.0',
-					'1.0.3',
-					'1.0.2',
-					'1.0.1',
-					'1.0.0'
-				]);
-			</script>
+			<!-- https://github.com/ghybs/manage-libs-versions -->
+			<div
+					data-manage-lib="leaflet"
+					data-manage-versions="1.2.0, 1.1.0, 1.0.3, 1.0.2, 1.0.1, 1.0.0"
+			></div>
 		</td>
 		<td>
-			<script>
-				bundle1.insertLibVersionsRadioHere('leaflet.markercluster', [
-					'1.1.0',
-					'1.0.6',
-					'1.0.5',
-					'1.0.4'
-				]);
-			</script>
+			<div
+					data-manage-lib="leaflet.markercluster"
+					data-manage-versions="1.1.0, 1.0.6, 1.0.5, 1.0.4"
+			></div>
 		</td>
 		<td>
-			<script>
-				bundle1.insertLibVersionsRadioHere('leaflet.markercluster.freezable', [
-					'1.0.0'
-				]);
-			</script>
+			<div
+					data-manage-lib="leaflet.markercluster.freezable"
+					data-manage-versions="1.0.0"
+			></div>
 		</td>
 	</tr>
 	<tr>
 		<!--td>("eaten" by above rowspan)</td-->
 		<td>
-			<script>
-				bundle1.insertLibVersionsRadioHere('leaflet.markercluster', [
-					'1.0.3',
-					'1.0.2',
-					'1.0.1',
-					'1.0.0'
-				]);
-			</script>
+			<div
+					data-manage-lib="leaflet.markercluster"
+					data-manage-versions="1.0.3, 1.0.2, 1.0.1, 1.0.0"
+			></div>
 		</td>
 		<td rowspan="2">
-			<script>
-				bundle1.insertLibVersionsRadioHere('leaflet.markercluster.freezable', [
-					'0.1.1'
-				]);
-			</script>
+			<div
+					data-manage-lib="leaflet.markercluster.freezable"
+					data-manage-versions="0.1.1"
+			></div>
 		</td>
 	</tr>
 	<tr>
 		<td>
-			<script>
-				bundle1.insertLibVersionsRadioHere('leaflet', [
-					'0.7.7'
-				]);
-			</script>
+			<div
+					data-manage-lib="leaflet"
+					data-manage-versions="0.7.7"
+			></div>
 		</td>
 		<td>
-			<script>
-				bundle1.insertLibVersionsRadioHere('leaflet.markercluster', [
-					'0.5.0'
-				]);
-			</script>
+			<div
+					data-manage-lib="leaflet.markercluster"
+					data-manage-versions="0.5.0"
+			></div>
 		</td>
 		<!--td>("eaten" by above rowspan)</td-->
 	</tr>
@@ -203,11 +181,10 @@
 		<td></td>
 		<td></td>
 		<td>
-			<script>
-				bundle1.insertLibVersionsRadioHere('leaflet.markercluster.freezable', [
-					'local'
-				]);
-			</script>
+			<div
+					data-manage-lib="leaflet.markercluster.freezable"
+					data-manage-versions="local"
+			></div>
 		</td>
 	</tr>
 </table>
@@ -224,7 +201,13 @@
 <script src="https://unpkg.com/urijs@1.18.12/src/URI.min.js"></script>
 <script src="https://unpkg.com/load-js-css@0.0.2/index.js"></script>
 
+<script src="https://unpkg.com/manage-libs-versions@0.2.0/manage-libs-versions.js"></script>
+<!--script src="manage-libs-versions.js"></script-->
+<script src="mcg-freezable-libs-setup.js"></script>
+
 <script>
+
+	bundle1.fillPlaceholders();
 
 	// Check for availability of local version.
 	// It is absent from repository, therefore in online mode.
