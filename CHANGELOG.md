@@ -5,9 +5,12 @@
 
 Compatible with Leaflet >= 1.0.0 and Leaflet.markercluster >= 1.0.4
 
+Breaking changes:
+
+- Fix compatibility issue with MCG >= 1.0.4; previously non-clustered markers disappear when clusters split [#5](https://github.com/ghybs/Leaflet.MarkerCluster.Freezable/issues/5)
+
 Fixes:
 
-- Previously non-clustered markers disappear when clusters split, compatibility issue with MCG >= 1.0.4 [#5](https://github.com/ghybs/Leaflet.MarkerCluster.Freezable/issues/5)
 - Compatibility with Leaflet.MarkerClusterGroup.LayerSupport sub-plugin [#6](https://github.com/ghybs/Leaflet.MarkerCluster.Freezable/issues/6) and [ghybs/Leaflet.MarkerCluster.LayerSupport#13](https://github.com/ghybs/Leaflet.MarkerCluster.LayerSupport/issues/13)
 - Dynamically added marker do not appear if they are out of the initial view port [#7](https://github.com/ghybs/Leaflet.MarkerCluster.Freezable/issues/7)
 
