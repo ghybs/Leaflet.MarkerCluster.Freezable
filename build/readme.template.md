@@ -31,10 +31,10 @@ This plugin is compatible with the following combinations:
 	</tr>
 	<tr>
 		<td rowspan="2">
-		    1.0.0 → 1.2.0
+		    1.0.0&nbsp;→&nbsp;1.2.0
 		</td>
 		<td>
-		    1.0.4 → 1.1.0
+		    1.0.4&nbsp;→&nbsp;1.1.0
 		</td>
 		<td>
 		    [1.0.0](https://github.com/ghybs/Leaflet.MarkerCluster.Freezable/releases/tag/v1.0.0)
@@ -43,7 +43,7 @@ This plugin is compatible with the following combinations:
 	<tr>
 		<!--td>("eaten" by above rowspan)</td-->
 		<td>
-		    1.0.0 → 1.0.3
+		    1.0.0&nbsp;→&nbsp;1.0.3
 		</td>
 		<td rowspan="2">
 		    [0.1.1](https://github.com/ghybs/Leaflet.MarkerCluster.Freezable/releases/tag/v0.1.1)
