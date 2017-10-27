@@ -23,6 +23,43 @@ for mobile-friendly interactive maps.
 ## Requirements
 This plugin is compatible with the following combinations:
 
+<table>
+	<tr>
+		<th>Leaflet</th>
+		<th>Leaflet.markercluster</th>
+		<th>Leaflet.MarkerCluster.Freezable</th>
+	</tr>
+	<tr>
+		<td rowspan="2">
+		    1.0.0 to 1.2.0
+		</td>
+		<td>
+		    1.0.4 to 1.1.0
+		</td>
+		<td>
+		    1.0.0
+		</td>
+	</tr>
+	<tr>
+		<!--td>("eaten" by above rowspan)</td-->
+		<td>
+		    1.0.0 to 1.0.3
+		</td>
+		<td rowspan="2">
+		    0.1.1
+		</td>
+	</tr>
+	<tr>
+		<td>
+		    0.7.7
+		</td>
+		<td>
+		    0.5.0
+		</td>
+		<!--td>("eaten" by above rowspan)</td-->
+	</tr>
+</table>
+
 Leaflet.MarkerCluster.Freezable version 0.1.1:
 - Leaflet 1.x.x + Leaflet.markercluster 1.0.0 - 1.0.3
 - Leaflet legacy (0.7.x) + Leaflet.markercluster legacy (0.5.x)
