@@ -36,23 +36,23 @@ var bundle1 = new manageLibsVersions.Bundle({
 			}),
 			_makeLeafletVersionAssets({
 				name: '1.0.2',
-				sriCss: 'sha256-9mfj77orHLh2GsN7CbMvpjO/Wny/ZZhR7Pu7hy0Yig4=',
-				sriSrcJs: 'sha256-VHkU4jC5FoqC9jHC5YP77Btx6zcwBBoE3v5e2UWExeM='
+				sriCss: 'sha384-UWNncEeCHTwoCP7ET6ZTVSPNXkKL7EWioe9by1pCm4Nu7nF9hR+tOaQzYSKp2dWN',
+				sriSrcJs: 'sha384-KNLak5IVC1MuCvuK2/vsXntDe3JNjiQVrRbeoCBUtLnSRbQgcPbTepID1g8Llk9Y'
 			}),
 			_makeLeafletVersionAssets({
 				name: '1.0.1',
-				sriCss: 'sha256-B5Af7a59HZfTwOlorb6pQSEj6l8I3jj785fgpPiLnx4=',
-				sriSrcJs: 'sha256-TKXcBJJSGl/FfgsHsWSqI/8eI2CVTs+/Z2xlBjnYh4Q='
+				sriCss: 'sha384-jbhYDFfm+l6mA6jJUD5X/yv7LoRqVSoV/P77fNwITqMNlHHVIdSwj3SexyasxFL/',
+				sriSrcJs: 'sha384-ObOe0J9dj8lQbJA8Pq3nwRiDPV58lDWqCJ/gLn2KPrUefv5P427o9ph0I4zyWWyu'
 			}),
 			_makeLeafletVersionAssets({
 				name: '1.0.0',
-				sriCss: 'sha256-PFO9CfQJUoeHCST/XnUtF/RaNuH/LgguGQ1ykt3iA7Y=',
-				sriSrcJs: 'sha256-Gga8lgup9173iOt2e8DKISTUSbz+JK6510SjbXoGcsQ='
+				sriCss: 'sha384-eEKCX4qfm6OKwQ/hvjr7cRoBNXSQuFQoaiS7sXxD1x5Fmus85DkG7OTFoU6eI3FV',
+				sriSrcJs: 'sha384-l/IzbI3svpXQy9ek7BrZfibt+dygUKc6XwMFKuvoCCGcwL+3GKNzMbF920axFAUy'
 			}),
 			_makeLeafletVersionAssets({
 				name: '0.7.7',
-				sriCss: 'sha256-ymZGho+WjeQQ2jvjHInYJd0h20DI6/AE0fYq+BGYXqY=',
-				sriSrcJs: 'sha256-nYr14YrqqLUvH8oPD82ha4p6ZIZ4emL9VGggPHRTnsE='
+				sriCss: 'sha384-99ZJFcuBCh9c/V/+8YwDX/TUGG8JWMG+gKFJWzk0BZP3IoDMN+pLGd3/H0yjg4oa',
+				sriSrcJs: 'sha384-AoPn7rJ3h17Ohw5HQ0Y6dQ/PwJxk6tIU61Hn0B7So8NGej/J1YCA9R4eehsfCid7'
 			})
 		]
 	}, {
