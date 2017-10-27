@@ -37,7 +37,7 @@ This plugin is compatible with the following combinations:
 		    1.0.4 → 1.1.0
 		</td>
 		<td>
-		    1.0.0
+		    [1.0.0](https://github.com/ghybs/Leaflet.MarkerCluster.Freezable/releases/tag/v1.0.0)
 		</td>
 	</tr>
 	<tr>
@@ -46,7 +46,7 @@ This plugin is compatible with the following combinations:
 		    1.0.0 → 1.0.3
 		</td>
 		<td rowspan="2">
-		    0.1.1
+		    [0.1.1](https://github.com/ghybs/Leaflet.MarkerCluster.Freezable/releases/tag/v0.1.1)
 		</td>
 	</tr>
 	<tr>
