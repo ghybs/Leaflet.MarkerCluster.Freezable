@@ -128,6 +128,14 @@ You can alternatively use the free [unpkg](https://unpkg.com) CDN service, but k
 <!-- After Leaflet script -->
 <script src="https://unpkg.com/leaflet.markercluster.freezable@1.0.0/dist/leaflet.markercluster.freezable.js"></script>
 ```
+Or with [Subresource Integrity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity):
+```html
+<script
+    src="https://unpkg.com/leaflet.markercluster.freezable@1.0.0/dist/leaflet.markercluster.freezable.js"
+    integrity="sha384-QXTyM8sAAM5XAUeRoyzNadlfH7KuYt0C6i9O/T2vFb4wGIKwL9Ak++3y3JBqfGyg"
+    crossorigin="anonymous"
+></script>
+```
 
 #### npm
 1. Add this package to your project:

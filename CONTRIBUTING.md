@@ -62,3 +62,7 @@ between the tag and the publication to npm, otherwise the commit references
 stored in the dist files will mismatch (because the publish script will rebuild
 the dist files).
 7. Publish to npm registry: `npm publish`
+8. Update the `readme.template.md` file for CDN SRI code sample (could not find
+a way to automate it, since we record the version commit hash into the `dist/`
+file, and SRI will be affected… furthermore, it might change at each README
+rebuilt in intermediate versions, no longer matching the displayed CDN version)
