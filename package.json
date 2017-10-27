@@ -1,11 +1,13 @@
 {
   "name": "leaflet.markercluster.freezable",
   "_name": "Leaflet.MarkerCluster.Freezable",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "_year": "2015-2016",
   "description": "Sub-plugin for Leaflet.markercluster plugin; adds the ability to freeze clusters at a specified zoom.",
   "main": "dist/leaflet.markercluster.freezable",
-  "files": ["dist/*.js"],
+  "files": [
+    "dist/*.js"
+  ],
   "directories": {
     "example": "examples"
   },
