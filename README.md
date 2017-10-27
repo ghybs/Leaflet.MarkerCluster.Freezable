@@ -23,7 +23,9 @@ for mobile-friendly interactive maps.
 ## Requirements
 This plugin is compatible with the following combinations:
 
-<table style="text-align: center;">
+<style>#compatibility-table td{text-align:center;}</style>
+
+<table id="compatibility-table">
 	<tr>
 		<th>Leaflet</th>
 		<th>Leaflet.markercluster</th>
