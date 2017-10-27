@@ -18,6 +18,16 @@ var bundle1 = new manageLibsVersions.Bundle({
 		name: 'leaflet',
 		mandatory: true,
 		versions: [
+			{
+				name: 'master',
+				assets: [{
+					type: 'stylesheet',
+					path: 'https://leafletjs-cdn.s3.amazonaws.com/content/build/master/leaflet.css'
+				}, {
+					type: 'script',
+					path: 'https://leafletjs-cdn.s3.amazonaws.com/content/build/master/leaflet-src.js'
+				}]
+			},
 			_makeLeafletVersionAssets({
 				name: '1.2.0',
 				defaultVersion: true,
