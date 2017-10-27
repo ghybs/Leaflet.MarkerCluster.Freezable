@@ -60,10 +60,6 @@ This plugin is compatible with the following combinations:
 	</tr>
 </table>
 
-Leaflet.MarkerCluster.Freezable version 0.1.1:
-- Leaflet 1.x.x + Leaflet.markercluster 1.0.0 - 1.0.3
-- Leaflet legacy (0.7.x) + Leaflet.markercluster legacy (0.5.x)
-
 
 
 ## Demos
