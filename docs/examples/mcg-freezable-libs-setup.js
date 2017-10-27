@@ -129,7 +129,7 @@ var bundle1 = new manageLibsVersions.Bundle({
 		name: 'leaflet.markercluster.freezable',
 		mandatory: true,
 		versions: [
-			_makeFreezableVersionAssets({ name: '1.0.0', disabled: true }), // Disable for now (not published yet)
+			_makeFreezableVersionAssets({ name: '1.0.0' }),
 			_makeFreezableVersionAssets({
 				name: '0.1.1',
 				sriSrcJs: 'sha384-0m+zNmAAm05B+yuv45nwO0EjOnMb6W9JOu5ISpE4C5dA4G5RCt6yAfXw2BZDsLCC'
