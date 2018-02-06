@@ -63,7 +63,7 @@ This plugin is compatible with the following combinations:
 
 
 ## Demos
-- [Leaflet.MarkerCluster.Freezable 1.0.0 (Leaflet 1.3.1 + Leaflet.markercluster 1.3.0)](https://ghybs.github.io/Leaflet.MarkerCluster.Freezable/examples/mcg-freezable.html?leaflet=1.3.1&leaflet.markercluster=1.2.0&leaflet.markercluster.freezable=1.0.0)
+- [Leaflet.MarkerCluster.Freezable 1.0.0 (Leaflet 1.3.1 + Leaflet.markercluster 1.3.0)](https://ghybs.github.io/Leaflet.MarkerCluster.Freezable/examples/mcg-freezable.html?leaflet=1.3.1&leaflet.markercluster=1.3.0&leaflet.markercluster.freezable=1.0.0)
 - [Leaflet.MarkerCluster.Freezable 0.1.1 (Leaflet 1.3.1 + Leaflet.markercluster 1.0.3)](https://ghybs.github.io/Leaflet.MarkerCluster.Freezable/examples/mcg-freezable.html?leaflet=1.3.1&leaflet.markercluster=1.0.3&leaflet.markercluster.freezable=0.1.1)
 - [Leaflet.MarkerCluster.Freezable 0.1.1 (Leaflet 0.7.7 + Leaflet.markercluster 0.5.0)](https://ghybs.github.io/Leaflet.MarkerCluster.Freezable/examples/mcg-freezable.html?leaflet=0.7.7&leaflet.markercluster=0.5.0&leaflet.markercluster.freezable=0.1.1)
 
